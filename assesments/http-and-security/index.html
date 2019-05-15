@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>HTTP and Security</title>
+</head>
+<body>
+<ol>
+	<li>What is the Hypertext Transfer Protocol (HTTP)</li>
+	Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes. 
+	<li>Why is HTTP called a stateless protocol? </li>
+	HTTP is a stateless protocol, meaning that the server does not keep any data (state) between two requests. Though often based on a TCP/IP layer, it can be used on any reliable transport layer; that is, a protocol that doesn't lose messages silently, such as UDP.
+	<li>Describe the three phases of establishing a session using client-server protocols such as HTTP </li>
+		<ul>
+			<li>The client establishes a TCP connection (or the appropriate connection if the transport layer is not TCP).</li>
+			<li>The client sends its request, and waits for the answer.</li>
+			<li>The server processes the request, sending back its answer, providing a status code and appropriate data.</li>
+		</ul>
+	<li>Describe the parameters on a get and post request. </li>
+		<ul>
+			<li>GET</li>The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
+			<li>POST</li>The POST method is used to submit an entity to the specified resource, often causing a change in state or side effects on the server.
+		</ul>
+	
+	<li>What are the HTTP response status code and What do the HTTP status codes, 200, and 404 indicate? </li>
+	HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
+	<ul>
+		<li>200 OK</li>
+    The request has succeeded. The meaning of a success varies depending on the HTTP method:<br>
+    GET: The resource has been fetched and is transmitted in the message body.<br>
+    HEAD: The entity headers are in the message body.<br>
+    PUT or POST: The resource describing the result of the action is transmitted in the message body.<br>
+    TRACE: The message body contains the request message as received by the server
+    <li>404 Not Found</li>
+    The server can not find requested resource. In the browser, this means the URL is not recognized. In an API, this can also mean that the endpoint is valid but the resource itself does not exist. Servers may also send this response instead of 403 to hide the existence of a resource from an unauthorized client. This response code is probably the most famous one due to its frequent occurence on the web.
+	</ul>
+	<li>What are HTTP cookies? Give an example. </li>
+	An HTTP cookie (web cookie, browser cookie) is a small piece of data that a server sends to the user's web browser. The browser may store it and send it back with the next request to the same server.
+	Session cookies<br>
+	The cookie created above is a session cookie: it is deleted when the client shuts down, because it didn't specify an Expires or Max-Age directive. However, web browsers may use session restoring, which makes most session cookies permanent, as if the browser was never closed.
+	<li>Why are cookies a security issue? </li>
+	A secure cookie is only sent to the server with an encrypted request over the HTTPS protocol. Even with Secure, sensitive information should never be stored in cookies, as they are inherently insecure and this flag can't offer real protection.
+	<li>Describe session hijacking and XSS</li>
+	Cookies are often used in web application to identify a user and their authenticated session, so stealing a cookie can lead to hijacking the authenticated user's session. Common ways to steal cookies include Social Engineering or exploiting an XSS vulnerability in the application.The HttpOnly cookie attribute can help to mitigate this attack by preventing access to cookie value through JavaScript. Exfiltration avenues can be limited by deploying a strict Content-Security-Policy.
+	<li>Describe Cross-site request forgery(CSRF)</li>
+	Cross-site request forgery CSRF, is a type of malicious exploit of a website where unauthorized commands are transmitted from a user that the web application trusts.
+	<li>What are Cross-site HTTP requests (CORS) and what requests use CORS? </li>
+	Cross-Origin Resource Sharing (CORS) is a mechanism that uses additional HTTP headers to tell a browser to let a web application running at one origin (domain) have permission to access selected resources from a server at a different origin. A web application executes a cross-origin HTTP request when it requests a resource that has a different origin (domain, protocol, and port) than its own origin.
+</ol>
+</body>
+</html>
